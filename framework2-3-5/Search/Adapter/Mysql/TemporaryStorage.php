@@ -98,8 +98,7 @@ class TemporaryStorage
                     self::FIELD_ENTITY_ID,
                     self::FIELD_SCORE,
                 ],
-                $data,
-                \Magento\Framework\DB\Adapter\AdapterInterface::REPLACE
+                $data
             );
         }
         return $table;

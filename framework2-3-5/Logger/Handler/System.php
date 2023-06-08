@@ -54,7 +54,7 @@ class System extends Base
         if (isset($record['context']['exception'])) {
             $this->exceptionHandler->handle($record);
 
-            return false;
+            return;
         }
 
         $record['formatted'] = $this->getFormatter()->format($record);

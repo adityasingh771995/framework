@@ -1,5 +1,4 @@
 <?php
-//
 /**
  * Root ACL Resource
  *
